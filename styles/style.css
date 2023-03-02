@@ -97,6 +97,7 @@ h2 {
     display: flex;
     flex-wrap: wrap;
     gap: 50px;
+    justify-content: space-around;
 }
 
 .stuart {
@@ -127,8 +128,8 @@ h2 {
 }
 
 .box {
-    height: 150px;
-    width: 150px;
+    height: 15vw;
+    width: 15vw;
     border: 3px solid darkblue;
     border-radius: 5px;
     overflow: hidden;
@@ -146,7 +147,7 @@ h2 {
 .ubox {
     color: black;
     text-align: center;
-    width: 150px;
+    width: 15vw;
     margin: 10px 0;
 }
 
