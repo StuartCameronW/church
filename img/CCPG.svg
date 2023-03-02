@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3165.52 2871.8">
+  <defs>
+    <style>
+      .cls-1 {
+        font-size: 1296px;
+      }
+
+      .cls-2 {
+        fill: #fff;
+        font-family: Cambria-Bold, Cambria;
+        font-weight: 700;
+      }
+
+      .cls-3 {
+        fill: #2d3d67;
+        stroke: #000;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-4 {
+        font-size: 750px;
+      }
+    </style>
+  </defs>
+  <rect class="cls-3" x=".5" y=".5" width="2834" height="2834" rx="706.19" ry="706.19"/>
+  <text class="cls-2" transform="translate(448 1246.83) scale(1.1 1)"><tspan class="cls-1" x="0" y="0">C</tspan><tspan class="cls-4" x="742.92" y="0"> </tspan><tspan class="cls-1" x="908.08" y="0">C</tspan></text>
+  <text/>
+  <text class="cls-2" transform="translate(448 2484.52) scale(1.1 1)"><tspan class="cls-1" x="0" y="0">P</tspan><tspan class="cls-4" x="795.45" y="0"> </tspan><tspan class="cls-1" x="960.61" y="0">G</tspan></text>
+</svg>
