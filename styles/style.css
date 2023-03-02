@@ -320,11 +320,39 @@ h2 {
         justify-content: space-around;
     }
     
+    .stuart {
+        width: 96.8%;
+        border-radius: 2%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        object-fit: contain;
+    }
+    
+    .ben {
+        width: 100%;
+        border-radius: 1%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        object-fit: contain;
+    }
+    
+    .thomas {
+        width: 100%;
+        border-radius: 1%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        object-fit: contain;
+    }
+    
     .box {
         height: 150px;
         width: 150px;
         border: 3px solid darkblue;
         border-radius: 5px;
+        overflow: hidden;
     }
     
     .ubox {
