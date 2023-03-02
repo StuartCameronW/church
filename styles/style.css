@@ -32,10 +32,15 @@ li, a {
     color: white;
 }
 
-img {
+.CCPGLogo {
     width: 30%;
     border-radius: 3%;
     object-fit: contain;
+    transition: 0.2s all;
+}
+
+.CCPGLogo:hover {
+    scale: 1.07;
 }
 
 .intro {
@@ -90,6 +95,15 @@ h2 {
     width: 150px;
     border: 3px solid darkblue;
     border-radius: 5px;
+}
+
+.listed {
+    transition: 0.2s all;
+}
+
+.listed:hover {
+    scale: 1.07;
+    
 }
 
 .ubox {
