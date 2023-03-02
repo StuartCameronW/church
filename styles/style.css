@@ -108,6 +108,24 @@ h2 {
     object-fit: contain;
 }
 
+.ben {
+    width: 100%;
+    border-radius: 1%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    object-fit: contain;
+}
+
+.thomas {
+    width: 100%;
+    border-radius: 1%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    object-fit: contain;
+}
+
 .box {
     height: 150px;
     width: 150px;
