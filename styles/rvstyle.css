@@ -227,12 +227,18 @@ h1 {
         color: rgb(123, 123, 123);
     }
 
+    .divCCPG {
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+    }
+
     .CCPGLogo {
-        width: 100%;
+        width: 70%;
         border-radius: 3%;
         object-fit: contain;
         transition: 0.2s all;
-        padding-bottom: 40px;
+        padding-bottom: 0;
     }
 
     .CCPGLogo:hover {
