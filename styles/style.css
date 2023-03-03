@@ -87,6 +87,7 @@ a:focus {
     color: white;
     align-items: center;
     height: 100%;
+    margin-top: 6vw;
 }
 
 .signup {
