@@ -8,7 +8,7 @@ body {
     flex-direction: column;
     background-color: rgb(45, 61, 103);
     padding: 0px 200px 0px;
-    height: 60vh;
+    min-height: 60vh;
 }
 
 ul, li, a {
@@ -285,7 +285,7 @@ h2 {
     }
 
     .navbar {
-        font-size: 10px;
+        font-size: 12px;
     } 
 
     img {
