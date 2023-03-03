@@ -126,15 +126,15 @@ tr {
 }
 
 tr:nth-child(2) {
-    background-color: black;
+    background-color: rgb(45, 61, 103);
 }
 
 tr:nth-child(6) {
-    background-color: black;
+    background-color: rgb(45, 61, 103);
 }
 
 tr:nth-child(9) {
-    background-color: black;
+    background-color: rgb(45, 61, 103);
 }
 
 h1 {
@@ -301,15 +301,15 @@ h1 {
     }
 
     tr:nth-child(2) {
-        background-color: black;
+        background-color: rgb(45, 61, 103);
     }
-
+    
     tr:nth-child(6) {
-        background-color: black;
+        background-color: rgb(45, 61, 103);
     }
-
+    
     tr:nth-child(9) {
-        background-color: black;
+        background-color: rgb(45, 61, 103);
     }
 
     h1 {
