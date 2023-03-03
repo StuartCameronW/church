@@ -7,7 +7,7 @@ signup.addEventListener('click', input);
 function input() {
         
     divsign.innerHTML = '<input type="text" class="input" placeholder="Email">';
-    divsign.innerHTML += '<input type="password" class="input2" placeholder="Password">';
+    divsign.innerHTML += '<input type="text" class="input2" placeholder="Confirm Email">';
     divsign.innerHTML += '<button class="enter">Enter</button>';
 
     const input = document.querySelector('.input');
@@ -22,10 +22,3 @@ function input() {
         enter.style.opacity = 1;
         }, 100);
 }
-
-let user = {
-    user: "Stuart",
-    age: "21",
-};
-
-user.isAdmin = true;

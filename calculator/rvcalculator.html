@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="../javascript/rvjs.js" defer></script>
+    <link rel="stylesheet" href="../styles/rvstyle.css">
+    <link rel="icon" type="image/x-icon" href="functions_FILL0_wght400_GRAD0_opsz48.svg">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RV Calculator</title>
+</head>
+<body>
+    <div class="top">
+        <ul class="navbar">
+            <div class="push"><a href="../index.html"><strong>Church & Co</strong></a></div>
+            <li><a href="../about.html">About us</a></li>
+            <li class="dropdown">
+                <a class="dropdownbtn" href="">Calculators<svg class="dropdownimg" xmlns="http://www.w3.org/2000/svg" height="12" viewBox="0 96 960 960" width="12"><path d="M480 711 240 471l43-43 197 198 197-197 43 43-240 239Z"/></svg></a>
+                <div class="dropdowncontent">
+                    <a href="rvcalculator.html">RV Calculator</a>
+                    <a href="">SDLT *Coming Soon*</a>
+                    <a href="">DCF *Coming Soon*</a>
+                </div>
+            </li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    <h1>RV Calculator</h1>
+    <form id="input">
+        <div>
+            <h3>Enter the Starting Year and Value</h3>
+            <input type="number" name="startYear" class="startYear" placeholder="Year">
+            <input type="number" name="startValue" class="startValue" placeholder="Value in £">
+            <h3>Enter the Ending Year and Value</h3>
+            <input type="number" name="endYear" class="endYear" placeholder="Year">
+            <input type="number" name="endValue" class="endValue" placeholder="Value in £">
+            <p><input type="checkbox" name="town" class="town"><strong>In City of London?</strong></p>
+            <input type="submit" class="submit" value="Submit">
+        </div>
+        <div>
+            <img class="CCPGLogo" src="../img/CCPGLogoV2.svg" alt="">
+        </div>
+            
+    </form>
+    </div>
+
+    <div class="bottom">
+    <table class="container">
+        <tr>
+            <th>NCA</th>
+            <td class="userEndValue">endValue</td>
+            <td>x</td>
+            <td class="ubrNCA">UBR@endYear+1</td>
+            <td>=</td>
+            <td class="resultNCA">Result</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <th class="endYearLess">endYear-1</th>
+            <td class="userStartValue">startValue</td>
+            <td>x</td>
+            <td class="ubrYear">UBR@endYear-1</td>
+            <td>=</td>
+            <td class="resultYear">Result</td>
+        </tr>
+        <tr>
+            <th>Inflation</th>
+            <td class="resultYear">result2016</td>
+            <td>x</td>
+            <td class="userInflation">inflation</td>
+            <td>=</td>
+            <td class="resultInflation">Result</td>
+        </tr>
+        <tr>
+            <th>Phasing</th>
+            <td class="resultInflation">resultInflation</td>
+            <td>x</td>
+            <td class="logicCheck">greater || less check</td>
+            <td>=</td>
+            <td class="resultPhasing">Result</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <th>SBRR</th>
+            <td class="userEndValue">endValue</td>
+            <td>x</td>
+            <td class="userUbrSbrr">UBR@endYear-1, SBRR - UBR</td>
+            <td>=</td>
+            <td class="resultUbrSbrr">Result</td>
+        </tr>
+        <tr>
+            <th class="brs">BRS</th>
+            <td class="userEndValue">endValue</td>
+            <td class="brs">x</td>
+            <td class="isLondon">isLondon?</td>
+            <td class="brs">=</td>
+            <td class="resultBrs">Result</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <th>Total</th>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="total">total</td>
+        </tr>
+    </table>
+    </div>
+</body>
+</html>
