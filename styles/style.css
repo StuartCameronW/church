@@ -287,13 +287,11 @@ h2 {
     .navbar {
         font-size: 12px;
     } 
-
-    img {
-        width: 100%;
-        border-radius: 3%;
-        object-fit: contain;
-    }
     
+    .CCPGLogo {
+        width: 70%;
+    }
+
     .intro {
         display: flex;
         flex-direction: column;

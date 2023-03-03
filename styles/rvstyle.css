@@ -158,6 +158,16 @@ h1 {
   text-align: right;
 }
 
+.footer {
+    display: flex;
+    background-color: rgb(45, 61, 103);
+    height: 70px;
+    color: rgb(203, 203, 203);
+    font-size: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
 @media all and (max-device-width: 1000px) {
         /* NAVBAR */ 
     .dropdownimg {
@@ -315,5 +325,11 @@ h1 {
     td:nth-child(4), th:nth-child(4),
     td:nth-child(6), th:nth-child(6) {
     text-align: right;
+    }
+
+    .footer {
+        display: flex;
+        background-color: rgb(45, 61, 103);
+        height: 70px;
     }
 }
