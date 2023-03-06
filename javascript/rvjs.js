@@ -18,6 +18,10 @@ const ubrArray = [
     {date: 2020.5, ubr: 49.9, sbrr: 51.2},
     {date: 2021.5, ubr: 49.9, sbrr: 51.2},
     {date: 2022.5, ubr: 49.9, sbrr: 51.2},
+    {date: 2023.5, ubr: 49.9, sbrr: 51.2},
+    {date: 2024.5, ubr: 49.9, sbrr: 51.2},
+    {date: 2025.5, ubr: 49.9, sbrr: 51.2},
+    /* Will apparantly remain same until April 2028 - but UK made statements really cannot be trusted */
 ]
 
 // Up Cap 
@@ -28,6 +32,9 @@ const upCapS = [
     {date: 2019.5, percentage: 0.10},
     {date: 2020.5, percentage: 0.15},
     {date: 2021.5, percentage: 0.15},
+    /* Probably not true values under here */
+    {date: 2022.5, percentage: 0.15},
+    {date: 2023.5, percentage: 0.15},
 ]
 
 const upCapM = [
@@ -36,6 +43,9 @@ const upCapM = [
     {date: 2019.5, percentage: 0.20},
     {date: 2020.5, percentage: 0.25},
     {date: 2021.5, percentage: 0.25},
+    /* Probably not true values under here */
+    {date: 2022.5, percentage: 0.25},
+    {date: 2023.5, percentage: 0.25},
 ]
 
 const upCapL = [
@@ -44,6 +54,9 @@ const upCapL = [
     {date: 2019.5, percentage: 0.49},
     {date: 2020.5, percentage: 0.16},
     {date: 2021.5, percentage: 0.06},
+    /* Probably not true values under here */
+    {date: 2022.5, percentage: 0.06},
+    {date: 2023.5, percentage: 0.06},
 ]
 
 // Down Cap
@@ -54,6 +67,9 @@ const downCapS = [
     {date: 2019.5, percentage: 0.35},
     {date: 2020.5, percentage: 0.55},
     {date: 2021.5, percentage: 0.55},
+    /* Probably not true values under here */
+    {date: 2022.5, percentage: 0.55},
+    {date: 2023.5, percentage: 0.55},
 ]
 
 const downCapM = [
@@ -62,6 +78,9 @@ const downCapM = [
     {date: 2019.5, percentage: 0.20},
     {date: 2020.5, percentage: 0.25},
     {date: 2021.5, percentage: 0.25},
+    /* Probably not true values under here */
+    {date: 2022.5, percentage: 0.25},
+    {date: 2023.5, percentage: 0.25},
 ]
 
 const downCapL = [
@@ -70,6 +89,9 @@ const downCapL = [
     {date: 2019.5, percentage: 0.059},
     {date: 2020.5, percentage: 0.058},
     {date: 2021.5, percentage: 0.048},
+    /* Probably not true values under here */
+    {date: 2022.5, percentage: 0.048},
+    {date: 2023.5, percentage: 0.048},
 ]
 
 //
@@ -111,7 +133,7 @@ input.addEventListener("submit", function (event) {
 
     for (let i = 0; i < ubrArray.length; i++) {
         console.log("Checking ubrArray index", i, "with date", ubrArray[i].date);
-        if (ubrArray[i].date == ((+endYear + (+endYear + 1))/2)) {
+        if (ubrArray[i].date == ((+endYear + 0.5 /*(+endYear + 1))/2*/))) {
         ubrFindYear = ubrArray[i].ubr;
         console.log("Found match at index", i, "with ubr", ubrFindYear);
         break;
@@ -121,7 +143,7 @@ input.addEventListener("submit", function (event) {
     console.log(ubrFindYear);
 
     let nca = +endValue * (ubrFindYear/100);
-    console.log(nca);
+    console.log("NCA =", nca);
     resultNCA.textContent = typography(nca);
 
     // Year Solver
