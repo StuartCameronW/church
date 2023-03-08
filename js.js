@@ -1,3 +1,26 @@
+// Theme
+
+document.querySelector('.theme').addEventListener('click', setTheme);
+const root = document.documentElement;
+
+root.className = 'light';
+
+function setTheme() {
+    console.log("Changing Theme")
+    let newTheme;
+    if (root.className === 'dark') {
+        newTheme = 'light';
+        root.className = newTheme;
+    } else {
+        newTheme = 'dark';
+        root.className = newTheme;
+    }
+}
+
+// Theme
+
+// Signup Btn
+
 const signup = document.querySelector('.signup');
 const divsign = document.querySelector('.divsign');
 const divflex = document.querySelector('.divflex');
@@ -22,3 +45,5 @@ function input() {
         enter.style.opacity = 1;
         }, 100);
 }
+
+// Signup Btn

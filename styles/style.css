@@ -1,4 +1,4 @@
-:root {
+:root.light {
     --darkblue-color: rgb(45, 61, 103);
     --text-color-darkbg: white;
     --text-color-normalbg: black;
@@ -6,17 +6,37 @@
     --background-color2: rgb(231, 231, 231);
     --quote-text: rgb(90, 90, 90);
     --quote-ref: rgb(66, 66, 66);
+    --filter-svg: invert(4%) sepia(8%) saturate(264%) hue-rotate(314deg) brightness(97%) contrast(91%);
 }
 
-@media (prefers-color-scheme: dark) {
-    :root {
+
+:root.dark {
+    --darkblue-color: rgb(45, 61, 103);
+    --text-color-darkbg: white;
     --text-color-normalbg: white;
     --background-color: rgb(49, 49, 49);
     --background-color2: rgb(78, 78, 78);
-    --quote-text: rgb(90, 90, 90);
     --quote-text: rgb(220, 220, 220);
     --quote-ref: rgb(194, 194, 194);
-    }
+    --filter-svg: invert(100%) sepia(31%) saturate(138%) hue-rotate(192deg) brightness(111%) contrast(80%);
+}
+
+.theme {
+    transition: all 0.2s;
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    scale: 0.8;
+    filter: var(--filter-svg);
+}
+
+.theme:hover {
+    cursor: pointer;
+    scale: 0.9;
+}
+
+.theme:active {
+    scale: 0.8;
 }
 
 body {
