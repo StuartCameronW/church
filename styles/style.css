@@ -1,6 +1,28 @@
+:root {
+    --darkblue-color: rgb(45, 61, 103);
+    --text-color-darkbg: white;
+    --text-color-normalbg: black;
+    --background-color: white;
+    --background-color2: rgb(231, 231, 231);
+    --quote-text: rgb(90, 90, 90);
+    --quote-ref: rgb(66, 66, 66);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+    --text-color-normalbg: white;
+    --background-color: rgb(49, 49, 49);
+    --background-color2: rgb(78, 78, 78);
+    --quote-text: rgb(90, 90, 90);
+    --quote-text: rgb(220, 220, 220);
+    --quote-ref: rgb(194, 194, 194);
+    }
+}
+
 body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
+    background-color: var(--background-color);;
 }
 
 .header {
@@ -37,7 +59,7 @@ a:focus {
     padding: 20px 0 13px;
     position: sticky;
     top: 0px;
-    background-color: rgb(45, 61, 103);
+    background-color: var(--darkblue-color);
     z-index: 1;
 }
 
@@ -58,7 +80,7 @@ a:focus {
     flex-direction: column;
     position: absolute;
     top: 35px;
-    background-color: rgb(45, 61, 103);
+    background-color: var(--darkblue-color);
     padding-top: 10px;
     transition: 0.2s all;
 }
@@ -103,6 +125,7 @@ a:focus {
 
 .signup:hover {
     background-color: rgb(0, 37, 88);
+    cursor: pointer;
 }
 
 .signup:active {
@@ -118,6 +141,8 @@ a:focus {
     padding: 50px 200px;
     align-items: center;
     justify-content: space-between;
+    color: var(--text-color-normalbg);
+    background-color: var(--background-color);
 }
 
 h2 {
@@ -134,7 +159,6 @@ h2 {
 
 .stuart {
     width: 96.8%;
-    border-radius: 2%;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -162,7 +186,7 @@ h2 {
 .box {
     height: 15vw;
     width: 15vw;
-    border: 3px solid darkblue;
+    border: 3px solid var(--darkblue-color);
     border-radius: 5px;
     overflow: hidden;
 }
@@ -177,7 +201,7 @@ h2 {
 }
 
 .ubox {
-    color: black;
+    color: var(--text-color-normalbg);
     text-align: center;
     width: 15vw;
     margin: 10px 0;
@@ -186,18 +210,18 @@ h2 {
 .body2 {
     display: flex;
     flex-direction: column;
-    background-color: rgb(231, 231, 231);
+    background-color: var(--background-color2);
     padding: 100px 200px;
 }
 
 .quote {
     font-size: 35px;
-    color: rgb(90, 90, 90);
+    color: var(--quote-text);
 }
 
 .thor {
     margin-left: auto;
-    color: rgb(66, 66, 66);
+    color: var(--quote-ref);
 }
 
 .body3 {
@@ -226,6 +250,7 @@ h2 {
 
 .signup2:hover {
     background-color: rgb(0, 37, 88);
+    cursor: pointer;
 }
 
 .signup2:active {
@@ -236,7 +261,7 @@ h2 {
 
 .footer {
     display: flex;
-    background-color: rgb(45, 61, 103);
+    background-color: var(--darkblue-color);
     height: 70px;
     color: rgb(203, 203, 203);
     font-size: 10px;
@@ -272,6 +297,7 @@ h2 {
 
 .enter:hover {
     background-color: rgb(0, 37, 88);
+    cursor: pointer;
 }
 
 .enter:active {
@@ -321,6 +347,7 @@ h2 {
     
     .signup:hover {
         background-color: rgb(0, 37, 88);
+        cursor: pointer;
     }
     
     .signup:active {
@@ -380,7 +407,6 @@ h2 {
     .box {
         height: 200px;
         width: 200px;
-        border: 3px solid darkblue;
         border-radius: 5px;
         overflow: hidden;
     }
@@ -437,6 +463,7 @@ h2 {
     
     .signup2:hover {
         background-color: rgb(0, 37, 88);
+        cursor: pointer;
     }
     
     .signup2:active {
@@ -447,7 +474,7 @@ h2 {
     
     .footer {
         display: flex;
-        background-color: rgb(45, 61, 103);
+        background-color: var(--darkblue-color);
         height: 70px;
     }
     
@@ -479,6 +506,7 @@ h2 {
     
     .enter:hover {
         background-color: rgb(0, 37, 88);
+        cursor: pointer;
     }
     
     .enter:active {

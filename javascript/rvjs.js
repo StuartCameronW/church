@@ -176,12 +176,16 @@ input.addEventListener("submit", function (event) {
 
     let inflationSolver = 0;
 
-    for (let i = 0; i < ubrArray.length; i++) {
-        console.log("Checking ubrArray index", i, "with date", ubrArray[i].date);
-        if (inflationArray[i].date == (endYear - 1)) {
-        inflationSolver = inflationArray[i].percentage;
-        console.log("Found match at index", i, "with percentage", inflationSolver);
-        break;
+    if (+endYear > 2023 || +endYear < 2016) {
+        alert("Error! Type Values between 2016 and 2023")
+    } else {
+        for (let i = 0; i < ubrArray.length; i++) {
+            console.log("Checking ubrArray index", i, "with date", ubrArray[i].date);
+            if (inflationArray[i].date == (endYear - 1)) {
+            inflationSolver = inflationArray[i].percentage;
+            console.log("Found match at index", i, "with percentage", inflationSolver);
+            break;
+            }
         }
     }
 
