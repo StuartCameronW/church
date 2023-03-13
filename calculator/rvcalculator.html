@@ -28,11 +28,11 @@
     <form id="input">
         <div>
             <h3>Enter the Starting Year and Value</h3>
-            <input type="number" name="startYear" class="startYear" placeholder="Year">
-            <input type="number" name="startValue" class="startValue" placeholder="Value in £">
+            <input type="number" name="startYear" class="startYear" placeholder="Year" min="2016" max="2023" title="Please enter a year" required>
+            <input type="number" name="startValue" class="startValue" placeholder="Value in £" title="Please enter a the rent" required>
             <h3>Enter the Ending Year and Value</h3>
-            <input type="number" name="endYear" class="endYear" placeholder="Year">
-            <input type="number" name="endValue" class="endValue" placeholder="Value in £">
+            <input type="number" name="endYear" class="endYear" placeholder="Year" min="2016" max="2023" title="Please enter a year" required>
+            <input type="number" name="endValue" class="endValue" placeholder="Value in £" title="Please enter a the rent" required>
             <p><input type="checkbox" name="town" class="town"><strong>In City of London?</strong></p>
             <input type="submit" class="submit" value="Submit">
         </div>
@@ -53,7 +53,7 @@
             <td>=</td>
             <td class="resultNCA">Result</td>
         </tr>
-        <tr>
+        <tr class="darker">
             <td></td>
             <td></td>
             <td></td>
@@ -85,7 +85,7 @@
             <td>=</td>
             <td class="resultPhasing">Result</td>
         </tr>
-        <tr>
+        <tr class="darker">
             <td></td>
             <td></td>
             <td></td>
@@ -109,7 +109,7 @@
             <td class="brs">=</td>
             <td class="resultBrs">Result</td>
         </tr>
-        <tr>
+        <tr class="darker">
             <td></td>
             <td></td>
             <td></td>
@@ -127,6 +127,7 @@
         </tr>
     </table>
     </div>
+    <img class="theme" src="../img/theme.svg" alt="Light/Dark Theme">
     <div class="footer">
         © 2023 Church & Co All right reserved
     </div>

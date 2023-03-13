@@ -1,20 +1,17 @@
 // Theme
 
-document.querySelector('.theme').addEventListener('click', setTheme);
 const root = document.documentElement;
+const currentTheme = localStorage.getItem('theme') || 'light';
 
-root.className = 'light';
+root.className = currentTheme;
 
-function setTheme() {
-    console.log("Changing Theme")
-    let newTheme;
-    if (root.className === 'dark') {
-        newTheme = 'light';
-        root.className = newTheme;
-    } else {
-        newTheme = 'dark';
-        root.className = newTheme;
-    }
+document.querySelector('.theme').addEventListener('click', toggleTheme);
+
+function toggleTheme() {
+    const newTheme = root.className === 'dark' ? 'light' : 'dark';
+    root.className = newTheme;
+
+    localStorage.setItem('theme', newTheme);
 }
 
 // Theme
@@ -29,8 +26,8 @@ signup.addEventListener('click', input);
 
 function input() {
         
-    divsign.innerHTML = '<input type="text" class="input" placeholder="Email">';
-    divsign.innerHTML += '<input type="text" class="input2" placeholder="Confirm Email">';
+    divsign.innerHTML = '<input type="email" class="input" placeholder="Email">';
+    divsign.innerHTML += '<input type="email" class="input2" placeholder="Confirm Email">';
     divsign.innerHTML += '<button class="enter">Enter</button>';
 
     const input = document.querySelector('.input');

@@ -1,3 +1,21 @@
+// Theme
+
+const root = document.documentElement;
+const currentTheme = localStorage.getItem('theme') || 'light';
+
+root.className = currentTheme;
+
+document.querySelector('.theme').addEventListener('click', toggleTheme);
+
+function toggleTheme() {
+    const newTheme = root.className === 'dark' ? 'light' : 'dark';
+    root.className = newTheme;
+
+    localStorage.setItem('theme', newTheme);
+}
+
+// Theme
+
 const inflationArray = [
     {date: 2016, percentage: 1.02},
     {date: 2017, percentage: 1.038},
@@ -178,7 +196,10 @@ input.addEventListener("submit", function (event) {
 
     if (+endYear > 2023 || +endYear < 2016) {
         alert("Error! Type Values between 2016 and 2023")
-    } else {
+    } else if (endYear < startYear) {
+        alert("Error! Starting year must be less than end year!")
+    }
+    else {
         for (let i = 0; i < ubrArray.length; i++) {
             console.log("Checking ubrArray index", i, "with date", ubrArray[i].date);
             if (inflationArray[i].date == (endYear - 1)) {

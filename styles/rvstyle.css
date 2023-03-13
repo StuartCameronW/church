@@ -1,6 +1,54 @@
 * {
     font-family: Arial, Helvetica, sans-serif;
+    transition: 0.2s all;
 }
+
+/* THEME */ 
+:root.light {
+    --darkblue-color: rgb(45, 61, 103);
+    --text-color-darkbg: white;
+    --text-color-normalbg: black;
+    --background-color: white;
+    --background-color2: rgb(231, 231, 231);
+    --quote-text: rgb(90, 90, 90);
+    --quote-ref: rgb(66, 66, 66);
+    --filter-svg: invert(4%) sepia(8%) saturate(264%) hue-rotate(314deg) brightness(97%) contrast(91%);
+    --page-width: clamp();
+    --border: #dddddd;
+}
+
+:root.dark {
+    --darkblue-color: rgb(45, 61, 103);
+    --text-color-darkbg: white;
+    --text-color-normalbg: white;
+    --background-color: rgb(66, 66, 66);
+    --background-color2: rgb(78, 78, 78);
+    --quote-text: rgb(220, 220, 220);
+    --quote-ref: rgb(194, 194, 194);
+    --filter-svg: invert(100%) sepia(31%) saturate(138%) hue-rotate(192deg) brightness(111%) contrast(80%);
+    --border: #343434;
+}
+
+.theme {
+    transition: all 0.2s;
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    scale: 0.6;
+    filter: var(--filter-svg);
+}
+
+.theme:hover {
+    cursor: pointer;
+    scale: 0.7;
+}
+
+.theme:active {
+    scale: 0.6;
+}
+/* THEME */ 
+
+
 
 /* NAVBAR */ 
 .dropdownimg {
@@ -15,7 +63,7 @@
     flex-direction: column;
     position: absolute;
     top: 35px;
-    background-color: rgb(45, 61, 103);
+    background-color: var(--darkblue-color);
     padding-top: 10px;
     transition: 0.2s all;
 }
@@ -73,6 +121,30 @@ a:focus {
 
 /* NAVBAR */
 
+/* input validation */
+
+.startYear, .endYear, .startValue, .endValue {
+    border: 2px solid rgb(0, 0, 67);
+    border-radius: 4px;
+    transition: 0.2s all;
+}
+
+.startYear:invalid, .endYear:invalid, .startValue:invalid, .endValue:invalid {
+    border-color: rgb(215, 169, 0);
+    border-radius: 4px;
+}
+
+.startYear:placeholder-shown, .endYear:placeholder-shown, .startValue:placeholder-shown, .endValue:placeholder-shown {
+    border: 2px solid rgb(0, 0, 67);
+    border-radius: 4px;
+}
+
+/* .startYear:focus, .endYear:focus, .startValue:focus, .endValue:focus {
+    
+} */
+
+/* input validation */
+
 body {
   margin: 0;
 }
@@ -85,6 +157,10 @@ form {
   display: flex;
   gap: 30%;
   align-items: center;
+}
+
+input {
+    background-color: var(--background-color2);
 }
 
 .submit {
@@ -112,13 +188,18 @@ table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
-    
+    color: var(--text-color-normalbg);
 }
   
 td, th {
-    border: 1px solid #dddddd;
+    border: 1px solid var(--border);
     text-align: left;
     padding: 8px;
+    background-color: var(--background-color);
+}
+
+.darker > td {
+    background-color: var(--darkblue-color);
 }
 
 tr {
@@ -126,15 +207,15 @@ tr {
 }
 
 tr:nth-child(2) {
-    background-color: rgb(45, 61, 103);
+    background-color: var(--darkblue-color);
 }
 
 tr:nth-child(6) {
-    background-color: rgb(45, 61, 103);
+    background-color: var(--darkblue-color);
 }
 
 tr:nth-child(9) {
-    background-color: rgb(45, 61, 103);
+    background-color: var(--darkblue-color);
 }
 
 h1 {
@@ -142,7 +223,7 @@ h1 {
 }
 
 .top {
-    background-color: rgb(45, 61, 103);
+    background-color: var(--darkblue-color);
     padding: 0% 200px;
     margin: 0;
 }
@@ -150,6 +231,7 @@ h1 {
 .bottom {
     padding: 2% 200px;
     margin: 0;
+    background-color: var(--background-color2);
 }
 
   td:nth-child(2), th:nth-child(2),
@@ -298,18 +380,6 @@ h1 {
 
     tr {
         background-color: white
-    }
-
-    tr:nth-child(2) {
-        background-color: rgb(45, 61, 103);
-    }
-    
-    tr:nth-child(6) {
-        background-color: rgb(45, 61, 103);
-    }
-    
-    tr:nth-child(9) {
-        background-color: rgb(45, 61, 103);
     }
 
     h1 {

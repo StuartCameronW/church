@@ -1,3 +1,7 @@
+* {
+    transition: 0.2s all;
+}
+
 :root.light {
     --darkblue-color: rgb(45, 61, 103);
     --text-color-darkbg: white;
@@ -7,8 +11,8 @@
     --quote-text: rgb(90, 90, 90);
     --quote-ref: rgb(66, 66, 66);
     --filter-svg: invert(4%) sepia(8%) saturate(264%) hue-rotate(314deg) brightness(97%) contrast(91%);
+    --page-width: clamp();
 }
-
 
 :root.dark {
     --darkblue-color: rgb(45, 61, 103);
@@ -26,17 +30,17 @@
     position: fixed;
     bottom: 10px;
     left: 10px;
-    scale: 0.8;
+    scale: 0.6;
     filter: var(--filter-svg);
 }
 
 .theme:hover {
     cursor: pointer;
-    scale: 0.9;
+    scale: 0.7;
 }
 
 .theme:active {
-    scale: 0.8;
+    scale: 0.6;
 }
 
 body {
@@ -49,7 +53,7 @@ body {
     display: flex;
     flex-direction: column;
     background-color: rgb(45, 61, 103);
-    padding: 0px 200px 0px;
+    padding: 0 clamp(20px, 15vw, 600px) 0;
     min-height: 60vh;
 }
 
@@ -105,7 +109,14 @@ a:focus {
     transition: 0.2s all;
 }
 
-.dropdown:hover .dropdowncontent {display: flex; opacity: 1;}
+.dropdown:hover .dropdowncontent {
+    display: flex; 
+    opacity: 1;
+}
+
+/* .dropdownbtn .dropdowncontent:hover {
+    color: rgb(178, 178, 178)
+} */
 
 .dropdowncontent a {
     display: block;
@@ -327,7 +338,7 @@ h2 {
 }
 
 @media all and (max-device-width: 1000px) { 
-    
+
     .header {
         padding: 20px 50px 20px;
     }
@@ -344,7 +355,6 @@ h2 {
         display: flex;
         flex-direction: column;
         margin: 48px 0;
-        color: white;
     }
 
     h1 {
@@ -357,21 +367,12 @@ h2 {
     
     .signup {
         padding: 10px 30px;
-        background-color: rgb(0, 102, 255);
-        border: 1px solid rgb(0, 102, 255);
         border-radius: 5px;
-        color: white;
         transition: 0.5s all;
         margin: 20% auto;
     }
     
-    .signup:hover {
-        background-color: rgb(0, 37, 88);
-        cursor: pointer;
-    }
-    
     .signup:active {
-        background-color: rgb(0, 22, 52);
         padding: 9px 29px;
         margin: 9px auto;
         opacity: 0;
@@ -432,7 +433,6 @@ h2 {
     }
     
     .ubox {
-        color: black;
         text-align: center;
         width: 200px;
         margin: 10px 0;
@@ -441,18 +441,15 @@ h2 {
     .body2 {
         display: flex;
         flex-direction: column;
-        background-color: rgb(231, 231, 231);
         padding: 100px 50px;
     }
     
     .quote {
         font-size: 35px;
-        color: rgb(90, 90, 90);
     }
     
     .thor {
         margin-left: auto;
-        color: rgb(66, 66, 66);
     }
     
     .body3 {
@@ -467,7 +464,6 @@ h2 {
     }
     
     .left {
-        color: white;
         font-size: 12px;
     }
     
@@ -476,7 +472,6 @@ h2 {
         background-color: rgb(0, 102, 255);
         border: 1px solid rgb(255, 255, 255);
         border-radius: 5px;
-        color: white;
         transition: 0.2s all;
         margin: 0 0;
     }
@@ -494,7 +489,6 @@ h2 {
     
     .footer {
         display: flex;
-        background-color: var(--darkblue-color);
         height: 70px;
     }
     
@@ -507,8 +501,6 @@ h2 {
     .input, .input2 {
         width: 60%;
         border-radius: 3px;
-        border: 1px solid white;
-        transition: opacity 0.8s;
         opacity: 0;
     }
     
@@ -517,20 +509,11 @@ h2 {
         opacity: 0;
         padding: 10px 20px;
         margin: 0 auto 0 0;
-        background-color: rgb(0, 102, 255);
-        border: 1px solid rgb(0, 102, 255);
         border-radius: 5px;
-        color: white;
         transition: 0.2s all;
     }
-    
-    .enter:hover {
-        background-color: rgb(0, 37, 88);
-        cursor: pointer;
-    }
-    
+
     .enter:active {
-        background-color: rgb(0, 22, 52);
         margin: 1px auto 1px 1px;
         padding: 9px 19px;
     }
