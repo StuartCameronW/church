@@ -53,7 +53,7 @@ body {
     display: flex;
     flex-direction: column;
     background-color: rgb(45, 61, 103);
-    padding: 0 clamp(20px, 15vw, 600px) 0;
+    padding: 0 200px 0;
     min-height: 60vh;
 }
 
