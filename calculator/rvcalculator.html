@@ -28,11 +28,29 @@
     <form id="input">
         <div>
             <h3>Enter the Starting Year and Value</h3>
-            <input type="number" name="startYear" class="startYear" placeholder="Year" min="2016" max="2023" title="Please enter a year" required>
-            <input type="number" name="startValue" class="startValue" placeholder="Value in £" title="Please enter a the rent" required>
+            <input 
+            type="number" 
+            name="startYear" 
+            class="startYear" 
+            placeholder="Year" 
+            min="2016" 
+            max="2023" 
+            title="Please enter a year" 
+            value="2016" 
+            required> <!-- remove all values later -->
+
+            <input 
+            type="number" 
+            name="startValue" 
+            class="startValue" 
+            placeholder="Value in £" 
+            title="Please enter a the rent" 
+            value="101000" 
+            required>
+
             <h3>Enter the Ending Year and Value</h3>
-            <input type="number" name="endYear" class="endYear" placeholder="Year" min="2016" max="2023" title="Please enter a year" required>
-            <input type="number" name="endValue" class="endValue" placeholder="Value in £" title="Please enter a the rent" required>
+            <input type="number" name="endYear" class="endYear" placeholder="Year" min="2016" max="2023" title="Please enter a year" value="2017" required>
+            <input type="number" name="endValue" class="endValue" placeholder="Value in £" title="Please enter a the rent" value="102000" required>
             <p><input type="checkbox" name="town" class="town"><strong>In City of London?</strong></p>
             <input type="submit" class="submit" value="Submit">
         </div>
@@ -71,7 +89,7 @@
         </tr>
         <tr>
             <th>Inflation</th>
-            <td class="resultYear">result2016</td>
+            <td class="resultYear">resultEndYear-1</td>
             <td>x</td>
             <td class="userInflation">inflation</td>
             <td>=</td>
@@ -101,7 +119,7 @@
             <td>=</td>
             <td class="resultUbrSbrr">Result</td>
         </tr>
-        <tr>
+        <tr id="brsRow">
             <th class="brs">BRS</th>
             <td class="userEndValue">endValue</td>
             <td class="brs">x</td>

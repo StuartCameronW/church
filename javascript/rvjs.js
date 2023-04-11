@@ -27,6 +27,8 @@ const inflationArray = [
     {date: 2023, percentage: 1.105},
 ]
 
+// The following are kept as decimals because the calculations require later values too, e.g. 2015 is entered and 2016 data required
+
 const ubrArray = [
     {date: 2015.5, ubr: 48, sbrr: 49.3},
     {date: 2016.5, ubr: 48.4, sbrr: 49.7},
@@ -39,7 +41,7 @@ const ubrArray = [
     {date: 2023.5, ubr: 49.9, sbrr: 51.2},
     {date: 2024.5, ubr: 49.9, sbrr: 51.2},
     {date: 2025.5, ubr: 49.9, sbrr: 51.2},
-    /* Will apparantly remain same until April 2028 - but UK made statements really cannot be trusted */
+    // Will apparantly remain same until April 2028 - but UK made statements really cannot be trusted
 ]
 
 // Up Cap 
@@ -137,26 +139,25 @@ input.addEventListener("submit", function (event) {
 
     // NCA Solver
 
-    let ubrFindYear = 0;
-    console.log("ubrArray:", ubrArray);
-    console.log("endYear:", endYear);
+const userEndValue = document.querySelectorAll('.userEndValue');
+const ubrNCA = document.querySelector('.ubrNCA');
+const resultNCA = document.querySelector('.resultNCA');
 
-    const userEndValue = document.querySelectorAll('.userEndValue');
-    const ubrNCA = document.querySelector('.ubrNCA');
-    const resultNCA = document.querySelector('.resultNCA');
+userEndValue.forEach(function(element) {
+    element.textContent = typography(endValue);
+});
 
-    userEndValue.forEach(function(element) {
-        element.textContent = typography(endValue);
-      });
+let ubrFindYear = 0;
 
-    for (let i = 0; i < ubrArray.length; i++) {
-        console.log("Checking ubrArray index", i, "with date", ubrArray[i].date);
-        if (ubrArray[i].date == ((+endYear + 0.5 /*(+endYear + 1))/2*/))) {
-        ubrFindYear = ubrArray[i].ubr;
-        console.log("Found match at index", i, "with ubr", ubrFindYear);
-        break;
-        }
+for (let i = 0; i < ubrArray.length; i++) {
+    console.log("Checking ubrArray index", i, "with date", ubrArray[i].date);
+    if (ubrArray[i].date == (+endYear + 0.5)) {
+    ubrFindYear = ubrArray[i].ubr;
+    console.log("Found match at index", i, "with ubr", ubrFindYear);
+    break;
     }
+}
+
     ubrNCA.textContent = typographyDecimal((ubrFindYear/100));
     console.log(ubrFindYear);
 
@@ -173,7 +174,7 @@ input.addEventListener("submit", function (event) {
 
     for (let i = 0; i < ubrArray.length; i++) {
         console.log("Checking ubrArray index", i, "with date", ubrArray[i].date);
-        if (ubrArray[i].date == ((+endYear + (+endYear - 1))/2)) {
+        if (ubrArray[i].date == (+endYear - 0.5)) {
         ubrFindYear = ubrArray[i].ubr;
         console.log("Found match at index", i, "with ubr", ubrFindYear);
         break;
@@ -182,8 +183,8 @@ input.addEventListener("submit", function (event) {
 
     endYearLess.textContent = (endYear-1);
     userStartValue.textContent = typography(startValue);
-    ubrYear.textContent = typographyDecimal((ubrFindYear/100));
-    resultYear.forEach(function(element) {
+    ubrYear.textContent = typographyDecimal(ubrFindYear/100);
+    resultYear.forEach((element) => {
         element.textContent = typography(startValue * (ubrFindYear/100));
     });
 
@@ -248,10 +249,8 @@ input.addEventListener("submit", function (event) {
             size = "error";
         }
         console.log(size);
-        console.log((+endYear + (+endYear + 1))/2);
-
-
-
+        console.log(+endYear + 0.5);
+    
     const logicCheck = document.querySelector('.logicCheck');
     const resultPhasing = document.querySelector('.resultPhasing');
 
@@ -259,63 +258,33 @@ input.addEventListener("submit", function (event) {
 
     if (nca > inflationLogicCheck) {
         if (size == "small") {
-            for (let i = 0; i < upCapS.length; i++) {
-                console.log("Checking ubrArray index", i, "with date", upCapS[i].date);
-                if (upCapS[i].date == ((+endYear + (+endYear + 1))/2)) {
-                phasingSolver = (1 + upCapS[i].percentage);
-                console.log("Found match at index", i, "with percentage", phasingSolver);
-                break;
-                }
-            }
+            phasingSolver = checkDate(upCapS);
         } else if (size == "medium") {
-            for (let i = 0; i < upCapM.length; i++) {
-                console.log("Checking ubrArray index", i, "with date", upCapM[i].date);
-                if (upCapM[i].date == ((+endYear + (+endYear + 1))/2)) {
-                phasingSolver = (1 + upCapM[i].percentage);
-                console.log("Found match at index", i, "with percentage", phasingSolver);
-                break;
-                }
-            }
+            phasingSolver = checkDate(upCapM);
         } else if (size == "large") {
-            for (let i = 0; i < upCapL.length; i++) {
-                console.log("Checking ubrArray index", i, "with date", upCapL[i].date);
-                if (upCapL[i].date == ((+endYear + (+endYear + 1))/2)) {
-                phasingSolver = (1 + upCapL[i].percentage);
-                console.log("Found match at index", i, "with percentage", phasingSolver);
-                break;
-                }
-            }
+            phasingSolver = checkDate(upCapL);
         }
     } else if (nca < inflationLogicCheck) {
         if (size == "small") {
-            for (let i = 0; i < downCapS.length; i++) {
-                console.log("Checking ubrArray index", i, "with date", downCapS[i].date);
-                if (downCapS[i].date == ((+endYear + (+endYear + 1))/2)) {
-                phasingSolver = (1 - downCapS[i].percentage);
-                console.log("Found match at index", i, "with percentage", phasingSolver);
-                break;
-                }
-            }
+            phasingSolver = checkDate(downCapS);
         } else if (size == "medium") {
-            for (let i = 0; i < downCapM.length; i++) {
-                console.log("Checking ubrArray index", i, "with date", downCapM[i].date);
-                if (downCapM[i].date == ((+endYear + (+endYear + 1))/2)) {
-                phasingSolver = (1 - downCapM[i].percentage);
-                console.log("Found match at index", i, "with percentage", phasingSolver);
-                break;
-                }
-            }
+            phasingSolver = checkDate(downCapM);
         } else if (size == "large") {
-            for (let i = 0; i < downCapL.length; i++) {
-                console.log("Checking ubrArray index", i, "with date", downCapL[i].date);
-                if (downCapL[i].date == ((+endYear + (+endYear + 1))/2)) {
-                phasingSolver = (1 - downCapL[i].percentage);
-                console.log("Found match at index", i, "with percentage", phasingSolver);
-                break;
+            phasingSolver = checkDate(downCapL)
+        }
+    }
+
+        function checkDate(cap) {
+            for (let i = 0; i < cap.length; i++) {
+                console.log("Checking ubrArray for Phasing @", i, "with date", cap[i].date, "Where matches", +endYear + 0.5, "Searching in", cap, 'repeating', cap.length, 'times.');
+                if (+cap[i].date == (+endYear + 0.5)) {
+                    phasingSolver = (1 - cap[i].percentage);
+                    console.log("At index", i, "Phasing is", phasingSolver);
+                    return phasingSolver;
                 }
             }
         }
-    }
+    
     let phasing = (inflationLogicCheck * phasingSolver);
     logicCheck.textContent = typographyDecimal(phasingSolver);
     resultPhasing.textContent = typography(phasing);
@@ -329,7 +298,7 @@ input.addEventListener("submit", function (event) {
 
     for (let i = 0; i < ubrArray.length; i++) {
         console.log("Checking ubrArray index", i, "with date", ubrArray[i].date);
-        if (ubrArray[i].date == ((+endYear + (+endYear - 1))/2)) {
+        if (ubrArray[i].date == (+endYear - 0.5)) {
         ubrSbrr = (ubrArray[i].sbrr - ubrArray[i].ubr);
         console.log("Found match at index", i, "subtracted amnt = ", ubrSbrr);
         break;
@@ -343,15 +312,15 @@ input.addEventListener("submit", function (event) {
 
     const isLondon = document.querySelector('.isLondon');
     const resultBrs = document.querySelector('.resultBrs');
-    const tableRows = document.querySelectorAll('tr');
+    const tableRow = document.getElementById('brsRow');
 
     isLondon.textContent = typographyDecimal(brs);
     resultBrs.textContent = typography(brs * endValue);
 
-    if ((brs * endValue) == 0) {
-        tableRows[7].style.backgroundColor = 'red';
+    if ((brs) === 0) {
+        tableRow.style.backgroundColor = 'darkred';
     } else {
-        tableRows[7].style.backgroundColor = 'white';
+        tableRow.style.backgroundColor = 'white';
     }
 
     // Total

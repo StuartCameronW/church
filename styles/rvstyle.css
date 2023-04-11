@@ -195,15 +195,14 @@ td, th {
     border: 1px solid var(--border);
     text-align: left;
     padding: 8px;
+}
+
+tr {
     background-color: var(--background-color);
 }
 
 .darker > td {
     background-color: var(--darkblue-color);
-}
-
-tr {
-    background-color: white
 }
 
 tr:nth-child(2) {
@@ -379,7 +378,7 @@ h1 {
     }
 
     tr {
-        background-color: white
+        background-color: var(--background-color);
     }
 
     h1 {
