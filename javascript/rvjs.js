@@ -320,7 +320,7 @@ for (let i = 0; i < ubrArray.length; i++) {
     if ((brs) === 0) {
         tableRow.style.backgroundColor = 'darkred';
     } else {
-        tableRow.style.backgroundColor = 'white';
+        tableRow.style.backgroundColor = 'var(--background-color)';
     }
 
     // Total

@@ -205,6 +205,16 @@ tr {
     background-color: var(--darkblue-color);
 }
 
+td:nth-child(3) {
+    text-align: center;
+    color: grey;
+}
+
+td:nth-child(5) {
+    text-align: center;
+    color: grey;
+}
+
 tr:nth-child(2) {
     background-color: var(--darkblue-color);
 }
