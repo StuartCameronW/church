@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RV Calculator</title>
+    <title>Phasing Calculator</title>
 </head>
 <body>
     <div class="top">
@@ -17,17 +17,17 @@
             <li class="dropdown">
                 <a class="dropdownbtn" href="">Calculators<svg class="dropdownimg" xmlns="http://www.w3.org/2000/svg" height="12" viewBox="0 96 960 960" width="12"><path d="M480 711 240 471l43-43 197 198 197-197 43 43-240 239Z"/></svg></a>
                 <div class="dropdowncontent">
-                    <a href="rvcalculator.html">RV Calculator</a>
+                    <a href="rvcalculator.html">Phasing Calculator</a>
                     <a href="">SDLT *Coming Soon*</a>
                     <a href="">DCF *Coming Soon*</a>
                 </div>
             </li>
             <li><a href="#">Contact</a></li>
         </ul>
-    <h1>RV Calculator</h1>
+    <h1>Transitional Phasing Calculator</h1>
     <form id="input">
         <div>
-            <h3>Enter the Starting Year and Value</h3>
+            <h3>Enter the Starting Year and RV</h3>
             <input 
             type="number" 
             name="startYear" 
@@ -36,7 +36,7 @@
             min="2016" 
             max="2023" 
             title="Please enter a year" 
-            value="2016" 
+            value="2020" 
             required> <!-- remove all values later -->
 
             <input 
@@ -48,10 +48,10 @@
             value="101000" 
             required>
 
-            <h3>Enter the Ending Year and Value</h3>
-            <input type="number" name="endYear" class="endYear" placeholder="Year" min="2016" max="2023" title="Please enter a year" value="2017" required>
+            <h3>Enter the Ending Year and RV</h3>
+            <input type="number" name="endYear" class="endYear" placeholder="Year" min="2016" max="2023" title="Please enter a year" value="2021" required>
             <input type="number" name="endValue" class="endValue" placeholder="Value in £" title="Please enter a the rent" value="102000" required>
-            <p><input type="checkbox" name="town" class="town"><strong>In City of London?</strong></p>
+            <p><input type="checkbox" name="town" class="town" id="town"><label for="town"><strong>In City of London?</strong></label></p>
             <input type="submit" class="submit" value="Submit">
         </div>
         <div class="divCCPG">
