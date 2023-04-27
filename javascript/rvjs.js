@@ -42,6 +42,7 @@ const ubrArray = [
     {date: 2024.5, ubr: 49.9, sbrr: 51.2},
     {date: 2025.5, ubr: 49.9, sbrr: 51.2},
     // Will apparantly remain same until April 2028 - but UK made statements really cannot be trusted
+    // UBR for big >=51000 RVs and lower is SBRR
 ]
 
 // Up Cap 
@@ -116,6 +117,26 @@ const downCapL = [
 
 //
 
+// London Logic
+
+const cityOfLondonCheckbox = document.getElementById('cityLondon');
+const greaterLondonCheckbox = document.getElementById('greaterLondon');
+
+cityOfLondonCheckbox.addEventListener('change', () => {
+  if (cityOfLondonCheckbox.checked) {
+    greaterLondonCheckbox.checked = true;
+    greaterLondonCheckbox.style.opacity = '0.5';
+  } else {
+    greaterLondonCheckbox.style.opacity = '1';
+  }
+});
+
+greaterLondonCheckbox.addEventListener('click', () => {
+    if (cityOfLondonCheckbox.checked) {
+      greaterLondonCheckbox.checked = true;
+    }
+});
+
 // Number fancy maker
 
 function typography(num) {
@@ -134,34 +155,101 @@ input.addEventListener("submit", function (event) {
     const startValue = document.querySelector('.startValue').value;
     const endYear = document.querySelector('.endYear').value;
     const endValue = document.querySelector('.endValue').value;
-    const town = document.querySelector('.town').checked;
-    console.log(startYear, startValue, endYear, endValue, town);
+    console.log(startYear, startValue, endYear, endValue);
+
+    // In City of London?
+
+    let brs;
+    cityOfLondonCheckbox.checked ? brs = 0.02 : brs = 0;
+    let cityLondon;
+    cityOfLondonCheckbox.checked ? cityLondon = 0.004 : cityLondon = 0;
+
+    // In Greater London?
+
+    let greaterLondon;
+    greaterLondonCheckbox.checked ? greaterLondon = true : greaterLondon = false;
+    console.log(brs, cityLondon);
 
     // NCA Solver
 
-const userEndValue = document.querySelectorAll('.userEndValue');
-const ubrNCA = document.querySelector('.ubrNCA');
-const resultNCA = document.querySelector('.resultNCA');
+    const userEndValue = document.querySelectorAll('.userEndValue');
+    const ubrNCA = document.querySelector('.ubrNCA');
+    const resultNCA = document.querySelector('.resultNCA');
 
-userEndValue.forEach(function(element) {
-    element.textContent = typography(endValue);
-});
+    userEndValue.forEach(function(element) {
+        element.textContent = typography(endValue);
+    });
 
-let ubrFindYear = 0;
+    let ubrFindYear = 0;
+    let ncaUbrFindYear = 0;
 
-for (let i = 0; i < ubrArray.length; i++) {
-    console.log("Checking ubrArray index", i, "with date", ubrArray[i].date);
-    if (ubrArray[i].date == (+endYear + 0.5)) {
-    ubrFindYear = ubrArray[i].ubr;
-    console.log("Found match at index", i, "with ubr", ubrFindYear);
-    break;
+    function findUbrPos() {
+        for (let i = 0; i < ubrArray.length; i++) {
+            console.log("Checking ubrArray index", i, "with date", ubrArray[i].date);
+            if (ubrArray[i].date == (+endYear + 0.5)) {
+                ncaUbrFindYear = ubrArray[i].ubr;
+                console.log("Found match at index", i, "with ubr", ncaUbrFindYear);
+                return ncaUbrFindYear;
+            }
+        }
     }
-}
 
-    ubrNCA.textContent = typographyDecimal((ubrFindYear/100));
-    console.log(ubrFindYear);
+    function findSbrrPos() {
+        for (let i = 0; i < ubrArray.length; i++) {
+            console.log("Checking ubrArray index", i, "with date", ubrArray[i].date);
+            if (ubrArray[i].date == (+endYear + 0.5)) {
+                ncaUbrFindYear = ubrArray[i].sbrr;
+                console.log("Found match at index", i, "with sbrr", ncaUbrFindYear);
+                return ncaUbrFindYear;
+            }
+        }
+    }
 
-    let nca = +endValue * (ubrFindYear/100);
+// Start Value for Phasing
+
+    if (endYear > 2018 && startValue >= 51000) {
+        ubrFindYear = findSbrrNeg();
+    } else if (endYear <= 2018 && startValue < 51000) {
+        if (greaterLondon === true && startValue < 25500) {
+            ubrFindYear = findUbrNeg()
+        } else if (greaterLondon === true && startValue >= 25500) {
+            ubrFindYear = findSbrrNeg()
+        } else if (greaterLondon === false && startValue < 18000) {
+            ubrFindYear = findUbrNeg();
+        } else if (greaterLondon === false && startValue >= 18000) {
+            ubrFindYear = findSbrrNeg();
+        }
+    } else if (endYear <= 2018 && startValue > 51000) {
+        ubrFindYear = findSbrrNeg();
+    } else if (endYear > 2018 && startValue < 51000) {
+        ubrFindYear = findUbrNeg();
+    }
+
+// End Value for NCA
+
+    if (endYear > 2018 && endValue >= 51000) {
+        ncaUbrFindYear = findSbrrPos();
+    } else if (endYear <= 2018 && endValue < 51000) {
+        if (greaterLondon === true && endValue < 25500) {
+            ncaUbrFindYear = findUbrPos();
+        } else if (greaterLondon === true && endValue >= 25500) {
+            ncaUbrFindYear = findSbrrPos();
+        } else if (greaterLondon === false && endValue < 18000) {
+            ncaUbrFindYear = findUbrPos();
+        } else if (greaterLondon === false && endValue >= 18000) {
+            ncaUbrFindYear = findSbrrPos();
+        }
+    } else if (endYear <= 2018 && endValue > 51000) {
+        ncaUbrFindYear = findSbrrPos();
+    } else if (endYear > 2018 && endValue < 51000) {
+        ncaUbrFindYear = findUbrPos();
+    }
+
+
+    ubrNCA.textContent = typographyDecimal((ncaUbrFindYear/100 + cityLondon));
+    console.log(ncaUbrFindYear);
+
+    let nca = +endValue * (ncaUbrFindYear/100 + cityLondon);
     console.log("NCA =", nca);
     resultNCA.textContent = typography(nca);
 
@@ -172,16 +260,29 @@ for (let i = 0; i < ubrArray.length; i++) {
     const ubrYear = document.querySelector('.ubrYear');
     const resultYear = document.querySelectorAll('.resultYear');
 
-    for (let i = 0; i < ubrArray.length; i++) {
-        console.log("Checking ubrArray index", i, "with date", ubrArray[i].date);
-        if (ubrArray[i].date == (+endYear - 0.5)) {
-        ubrFindYear = ubrArray[i].ubr;
-        console.log("Found match at index", i, "with ubr", ubrFindYear);
-        break;
+    function findUbrNeg() {
+        for (let i = 0; i < ubrArray.length; i++) {
+            console.log("Checking ubrArray index", i, "with date", ubrArray[i].date);
+            if (ubrArray[i].date == (+endYear - 0.5)) {
+                ubrFindYear = ubrArray[i].ubr;
+                console.log("Found match at index", i, "with ubr", ubrFindYear);
+                return ubrFindYear;
+            }
         }
     }
 
-    endYearLess.textContent = (endYear-1);
+    function findSbrrNeg() {
+        for (let i = 0; i < ubrArray.length; i++) {
+            console.log("Checking ubrArray index", i, "with date", ubrArray[i].date);
+            if (ubrArray[i].date == (+endYear - 0.5)) {
+                ubrFindYear = ubrArray[i].sbrr;
+                console.log("Found match at index", i, "with sbrr", ubrFindYear);
+                return ubrFindYear;
+            }
+        }
+    }
+
+    endYearLess.textContent = (endYear - 1);
     userStartValue.textContent = typography(startValue);
     ubrYear.textContent = typographyDecimal(ubrFindYear/100);
     resultYear.forEach((element) => {
@@ -220,16 +321,6 @@ for (let i = 0; i < ubrArray.length; i++) {
 
     // Phasing Solver
 
-        // In London?
-
-        let brs;
-        if (town) {
-            brs = 0.02;
-        } else {
-            brs = 0;
-        }            
-        console.log(brs);
-
         // prop size finder
 
         let size;
@@ -257,29 +348,32 @@ for (let i = 0; i < ubrArray.length; i++) {
     let phasingSolver = 0;
 
     if (nca > inflationLogicCheck) {
+        console.log('NCA IS BIGGER');
         if (size == "small") {
-            phasingSolver = checkDate(upCapS);
+            phasingSolver = checkDate(upCapS, true);
         } else if (size == "medium") {
-            phasingSolver = checkDate(upCapM);
+            phasingSolver = checkDate(upCapM, true);
         } else if (size == "large") {
-            phasingSolver = checkDate(upCapL);
+            phasingSolver = checkDate(upCapL, true);
         }
     } else if (nca < inflationLogicCheck) {
+        console.log('NCA IS LESS');
         if (size == "small") {
-            phasingSolver = checkDate(downCapS);
+            phasingSolver = checkDate(downCapS, false);
         } else if (size == "medium") {
-            phasingSolver = checkDate(downCapM);
+            phasingSolver = checkDate(downCapM, false);
         } else if (size == "large") {
-            phasingSolver = checkDate(downCapL)
+            phasingSolver = checkDate(downCapL, false)
         }
     }
 
-        function checkDate(cap) {
+        function checkDate(cap, input) {
             for (let i = 0; i < cap.length; i++) {
                 console.log("Checking ubrArray for Phasing @", i, "with date", cap[i].date, "Where matches", +endYear + 0.5, "Searching in", cap, 'repeating', cap.length, 'times.');
                 if (+cap[i].date == (+endYear + 0.5)) {
-                    phasingSolver = (1 - cap[i].percentage);
-                    console.log("At index", i, "Phasing is", phasingSolver);
+                    let control = input;
+                    input ? phasingSolver = (1 + cap[i].percentage) : phasingSolver = (1 - cap[i].percentage)
+                    console.log("At index", i, "Phasing is", cap[i].percentage, phasingSolver);
                     return phasingSolver;
                 }
             }
@@ -304,8 +398,8 @@ for (let i = 0; i < ubrArray.length; i++) {
         break;
         }
     }
-    let finalUbrSbrr = ((ubrSbrr/100) * endValue);
-    userUbrSbrr.textContent = typographyDecimal((ubrSbrr/100));
+    let finalUbrSbrr = ((ubrSbrr/100) * endValue + cityLondon); // + cityLondon may be falsey check later
+    userUbrSbrr.textContent = typographyDecimal((ubrSbrr/100 + cityLondon)); // + cityLondon may be falsey check later
     resultUbrSbrr.textContent = typography(finalUbrSbrr);
 
     // BRS Solver
