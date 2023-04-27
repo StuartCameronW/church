@@ -251,7 +251,7 @@ input.addEventListener("submit", function (event) {
 
     let nca = +endValue * (ncaUbrFindYear/100 + cityLondon);
     console.log("NCA =", nca);
-    resultNCA.textContent = typography(nca);
+    resultNCA.textContent = "£ " + typography(nca);
 
     // Year Solver
 
