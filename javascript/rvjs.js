@@ -10,7 +10,6 @@ document.querySelector('.theme').addEventListener('click', toggleTheme);
 function toggleTheme() {
     const newTheme = root.className === 'dark' ? 'light' : 'dark';
     root.className = newTheme;
-
     localStorage.setItem('theme', newTheme);
 }
 
@@ -185,10 +184,9 @@ input.addEventListener("submit", function (event) {
 
     function findUbrPos() {
         for (let i = 0; i < ubrArray.length; i++) {
-            console.log("Checking ubrArray index", i, "with date", ubrArray[i].date);
             if (ubrArray[i].date == (+endYear + 0.5)) {
                 ncaUbrFindYear = ubrArray[i].ubr;
-                console.log("Found match at index", i, "with ubr", ncaUbrFindYear);
+                console.log("Found ubr pos", i, "with ubr", ncaUbrFindYear);
                 return ncaUbrFindYear;
             }
         }
@@ -196,10 +194,9 @@ input.addEventListener("submit", function (event) {
 
     function findSbrrPos() {
         for (let i = 0; i < ubrArray.length; i++) {
-            console.log("Checking ubrArray index", i, "with date", ubrArray[i].date);
             if (ubrArray[i].date == (+endYear + 0.5)) {
                 ncaUbrFindYear = ubrArray[i].sbrr;
-                console.log("Found match at index", i, "with sbrr", ncaUbrFindYear);
+                console.log("Found sbrr pos", i, "with sbrr", ncaUbrFindYear);
                 return ncaUbrFindYear;
             }
         }
@@ -245,7 +242,6 @@ input.addEventListener("submit", function (event) {
         ncaUbrFindYear = findUbrPos();
     }
 
-
     ubrNCA.textContent = typographyDecimal((ncaUbrFindYear/100 + cityLondon));
     console.log(ncaUbrFindYear);
 
@@ -262,10 +258,9 @@ input.addEventListener("submit", function (event) {
 
     function findUbrNeg() {
         for (let i = 0; i < ubrArray.length; i++) {
-            console.log("Checking ubrArray index", i, "with date", ubrArray[i].date);
             if (ubrArray[i].date == (+endYear - 0.5)) {
                 ubrFindYear = ubrArray[i].ubr;
-                console.log("Found match at index", i, "with ubr", ubrFindYear);
+                console.log("Found ubr neg", i, "with ubr", ubrFindYear);
                 return ubrFindYear;
             }
         }
@@ -273,10 +268,9 @@ input.addEventListener("submit", function (event) {
 
     function findSbrrNeg() {
         for (let i = 0; i < ubrArray.length; i++) {
-            console.log("Checking ubrArray index", i, "with date", ubrArray[i].date);
             if (ubrArray[i].date == (+endYear - 0.5)) {
                 ubrFindYear = ubrArray[i].sbrr;
-                console.log("Found match at index", i, "with sbrr", ubrFindYear);
+                console.log("Found sbrr neg", i, "with sbrr", ubrFindYear);
                 return ubrFindYear;
             }
         }
@@ -284,9 +278,9 @@ input.addEventListener("submit", function (event) {
 
     endYearLess.textContent = (endYear - 1);
     userStartValue.textContent = typography(startValue);
-    ubrYear.textContent = typographyDecimal(ubrFindYear/100);
+    ubrYear.textContent = typographyDecimal(ubrFindYear/100 + cityLondon);
     resultYear.forEach((element) => {
-        element.textContent = typography(startValue * (ubrFindYear/100));
+        element.textContent = typography(startValue * (ubrFindYear/100 + cityLondon));
     });
 
     // Inflation Solver
@@ -296,19 +290,12 @@ input.addEventListener("submit", function (event) {
 
     let inflationSolver = 0;
 
-    if (+endYear > 2023 || +endYear < 2016) {
-        alert("Error! Type Values between 2016 and 2023")
-    } else if (endYear < startYear) {
-        alert("Error! Starting year must be less than end year!")
-    }
-    else {
-        for (let i = 0; i < ubrArray.length; i++) {
-            console.log("Checking ubrArray index", i, "with date", ubrArray[i].date);
-            if (inflationArray[i].date == (endYear - 1)) {
-            inflationSolver = inflationArray[i].percentage;
-            console.log("Found match at index", i, "with percentage", inflationSolver);
-            break;
-            }
+ 
+    for (let i = 0; i < ubrArray.length; i++) {
+        if (inflationArray[i].date == (endYear - 1)) {
+        inflationSolver = inflationArray[i].percentage;
+        console.log("Found inflation at", i, "with percentage", inflationSolver);
+        break;
         }
     }
 
@@ -369,7 +356,6 @@ input.addEventListener("submit", function (event) {
 
         function checkDate(cap, input) {
             for (let i = 0; i < cap.length; i++) {
-                console.log("Checking ubrArray for Phasing @", i, "with date", cap[i].date, "Where matches", +endYear + 0.5, "Searching in", cap, 'repeating', cap.length, 'times.');
                 if (+cap[i].date == (+endYear + 0.5)) {
                     let control = input;
                     input ? phasingSolver = (1 + cap[i].percentage) : phasingSolver = (1 - cap[i].percentage)
