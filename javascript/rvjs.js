@@ -167,7 +167,6 @@ input.addEventListener("submit", function (event) {
 
     let greaterLondon;
     greaterLondonCheckbox.checked ? greaterLondon = true : greaterLondon = false;
-    console.log(brs, cityLondon);
 
     // NCA Solver
 
@@ -276,7 +275,7 @@ input.addEventListener("submit", function (event) {
         }
     }
 
-    endYearLess.textContent = (endYear - 1);
+    endYearLess.textContent = `${endYear - 1} RV`;
     userStartValue.textContent = typography(startValue);
     ubrYear.textContent = typographyDecimal(ubrFindYear/100 + cityLondon);
     resultYear.forEach((element) => {
@@ -357,8 +356,7 @@ input.addEventListener("submit", function (event) {
         function checkDate(cap, input) {
             for (let i = 0; i < cap.length; i++) {
                 if (+cap[i].date == (+endYear + 0.5)) {
-                    let control = input;
-                    input ? phasingSolver = (1 + cap[i].percentage) : phasingSolver = (1 - cap[i].percentage)
+                    input ? phasingSolver = (1 + cap[i].percentage) : phasingSolver = (1 - cap[i].percentage);
                     console.log("At index", i, "Phasing is", cap[i].percentage, phasingSolver);
                     return phasingSolver;
                 }
@@ -377,10 +375,9 @@ input.addEventListener("submit", function (event) {
     let ubrSbrr = 0;
 
     for (let i = 0; i < ubrArray.length; i++) {
-        console.log("Checking ubrArray index", i, "with date", ubrArray[i].date);
         if (ubrArray[i].date == (+endYear - 0.5)) {
         ubrSbrr = (ubrArray[i].sbrr - ubrArray[i].ubr);
-        console.log("Found match at index", i, "subtracted amnt = ", ubrSbrr);
+        console.log("Found SBRR at index", i, "subtracted amnt = ", ubrSbrr);
         break;
         }
     }
