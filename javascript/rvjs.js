@@ -41,7 +41,7 @@ const ubrArray = [
     {date: 2024.5, ubr: 49.9, sbrr: 51.2},
     {date: 2025.5, ubr: 49.9, sbrr: 51.2},
     // Will apparantly remain same until April 2028 - but UK made statements really cannot be trusted
-    // UBR for big >=51000 RVs and lower is SBRR
+    // UBR for big >=51000 RVs and lower is SBRR ∆if date is <=2017-2018
 ]
 
 // Up Cap 
